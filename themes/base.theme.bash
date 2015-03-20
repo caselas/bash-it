@@ -69,7 +69,7 @@ function scm_prompt_vars {
   scm_prompt_char
   SCM_DIRTY=0
   SCM_STATE=''
-  [[ $SCM == $SCM_GIT ]] && git_prompt_vars && return
+  [[ $SCM == $SCM_GIT ]] && return
   [[ $SCM == $SCM_HG ]] && hg_prompt_vars && return
   [[ $SCM == $SCM_SVN ]] && svn_prompt_vars && return
 }
@@ -152,9 +152,9 @@ function svn_prompt_vars {
 }
 
 # this functions returns absolute location of .hg directory if one exists
-# It starts in the current directory and moves its way up until it hits /. 
+# It starts in the current directory and moves its way up until it hits /.
 # If we get to / then no Mercurial repository was found.
-# Example: 
+# Example:
 # - lets say we cd into ~/Projects/Foo/Bar
 # - .hg is located in ~/Projects/Foo/.hg
 # - get_hg_root starts at ~/Projects/Foo/Bar and sees that there is no .hg directory, so then it goes into ~/Projects/Foo
@@ -185,7 +185,7 @@ function hg_prompt_vars {
     HG_ROOT=$(get_hg_root)
 
     if [ -f $HG_ROOT/branch ]; then
-        # Mercurial holds it's current branch in .hg/branch file    
+        # Mercurial holds it's current branch in .hg/branch file
         SCM_BRANCH=$(cat $HG_ROOT/branch)
     else
         SCM_BRANCH=$(hg summary 2> /dev/null | grep branch: | awk '{print $2}')
@@ -253,7 +253,8 @@ function virtualenv_prompt {
 # backwards-compatibility
 function git_prompt_info {
   git_prompt_vars
-  echo -e "$SCM_PREFIX$SCM_BRANCH$SCM_STATE$SCM_SUFFIX"
+  echo -e "$SCM_BRANCH"
+  # echo -e "$SCM_PREFIX$SCM_BRANCH$SCM_STATE$SCM_SUFFIX"
 }
 
 function svn_prompt_info {
@@ -282,4 +283,3 @@ if [ ! -e $BASH_IT/plugins/enabled/battery.plugin.bash ]; then
 			echo -n
     }
 fi
-

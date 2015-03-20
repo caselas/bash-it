@@ -60,17 +60,17 @@ git_prompt_status() {
   local git_status_output
   git_status_output=$(git status 2> /dev/null )
   if [ -n "$(echo $git_status_output | grep 'Changes to be committed')" ] && [ -n "$(echo $git_status_output | grep 'Changes not staged')" ]; then
-     git_status="${bold_cyan}git:(${purple}$(scm_prompt_info)${bold_cyan}) ${bold_red}○ ●"
+     git_status="${bold_cyan}git:(${purple}$(git symbolic-ref --short -q HEAD)${bold_cyan}) ${bold_red}○ ●"
   elif [ -n "$(echo $git_status_output | grep 'Changes to be committed')" ] && [ -n "$(echo $git_status_output | grep 'Untracked files')" ]; then
-     git_status="${bold_cyan}git:(${purple}$(scm_prompt_info)${bold_cyan}) ${bold_red}○ ●"
+     git_status="${bold_cyan}git:(${purple}$(git symbolic-ref --short -q HEAD)${bold_cyan}) ${bold_red}○ ●"
   elif [ -n "$(echo $git_status_output | grep 'Changes not staged')" ]; then
-    git_status="${bold_cyan}git:(${purple}$(scm_prompt_info)${bold_cyan}) ${bold_red}○"
+    git_status="${bold_cyan}git:(${purple}$(git symbolic-ref --short -q HEAD)${bold_cyan}) ${bold_red}○"
   elif [ -n "$(echo $git_status_output | grep 'Changes to be committed')" ]; then
-     git_status="${bold_cyan}git:(${purple}$(scm_prompt_info)${bold_cyan}) ${bold_red}●"
+     git_status="${bold_cyan}git:(${purple}$(git symbolic-ref --short -q HEAD)${bold_cyan}) ${bold_red}●"
   elif [ -n "$(echo $git_status_output | grep 'Untracked files')" ]; then
-     git_status="${bold_cyan}git:(${purple}$(scm_prompt_info)${bold_cyan}) ${bold_red}○"
+     git_status="${bold_cyan}git:(${purple}$(git symbolic-ref --short -q HEAD)${bold_cyan}) ${bold_red}○"
   elif [ -n "$(echo $git_status_output | grep 'nothing to commit')" ]; then
-     git_status="${bold_cyan}git:(${purple}$(scm_prompt_info)${bold_cyan})"
+     git_status="${bold_cyan}git:(${purple}$(git symbolic-ref --short -q HEAD)${bold_cyan})"
   else
     git_status="$(scm_prompt_info)"
   fi

@@ -22,14 +22,18 @@ alias branch="git checkout -b"
 alias checkout="git checkout"
 
 # Applications
-alias vim="open -a MacVim"
 alias mate="open -a TextMate"
 alias lime="open -a Sublime\ Text"
 alias atom="open -a Atom"
 alias chrome="open -a Google\ Chrome"
+alias xcode="open -a Xcode"
+alias finder="open -a Finder"
 
 # Utilities
 alias fuckoffds="find . -name ".DS_Store" -delete"
 
 # Docker
 export DOCKER_HOST=tcp://localhost:4243
+
+# Navigation
+alias cdc="cd ~/Code"

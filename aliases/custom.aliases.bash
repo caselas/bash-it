@@ -3,6 +3,7 @@ HISTFILESIZE=500000
 
 # Bundler
 alias be="bundle exec"
+alias sbe="sudo bundle exec"
 alias rc="bundle exec rails console"
 alias rs="bundle exec rails server"
 alias rk="bundle exec rake"
@@ -20,6 +21,7 @@ alias master="git checkout master"
 alias pull="master && git pull && prune"
 alias branch="git checkout -b"
 alias checkout="git checkout"
+alias lastc="git show $(git log -n 1 | grep commit | cut -d \  -f 2)"
 
 # Applications
 alias mate="open -a TextMate"
